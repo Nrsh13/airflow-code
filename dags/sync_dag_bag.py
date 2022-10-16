@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 default_args = {
     'owner': 'admin',
     'start_date': datetime(2019, 3, 14),
-    'email': ['naresh_naresh@bnz.co.nz'],
+    'email': ['nrsh13@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
