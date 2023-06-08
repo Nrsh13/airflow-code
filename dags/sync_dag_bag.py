@@ -26,7 +26,7 @@ git_pull_command = """
     # setup path
     base_path=/usr/local/airflow
     repos=$base_path/repos
-    cd $repos
+    #cd $repos
     
     # clone repo
     if [ ! -d {{ params.repo_dir }} ]
@@ -38,6 +38,10 @@ git_pull_command = """
         cd {{ params.repo_dir }}
         git -c http.sslVerify=false pull
     fi
+    ls -lthr
+    cp -r dags/* $base_path/dags
+    cp -r pipelines/* $base_path/pipelines
+    cp -r plugins/* $base_path/plugins
 """
 
 git_pull = BashOperator(
@@ -58,9 +62,9 @@ sync_dags_command = """
     repos=$base_path/repos
     cd $repos
     # sync with dag folder
-    rsync -rc --delete-before --exclude benefits {{ params.repo_dir }}/dags $base_path
-    rsync -rc --delete-before {{ params.repo_dir }}/plugins $base_path
-    rsync -rc --delete-before {{ params.repo_dir }}/pipelines $base_path
+    #rsync -rc --delete-before --exclude benefits {{ params.repo_dir }}/dags $base_path
+    #rsync -rc --delete-before {{ params.repo_dir }}/plugins $base_path
+    #rsync -rc --delete-before {{ params.repo_dir }}/pipelines $base_path
 """
 
 sync_dags = BashOperator(
