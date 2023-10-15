@@ -7,7 +7,7 @@ String bitbucket_repo = 'airflow_image_build'
 String unique_id = "${bitbucket_project}/${bitbucket_repo}_bb"
 
 multibranchPipelineJob(pipeline_name) {
-  displayName(pipeline_name)
+  displayName("Airflow Image Build")
   description(pipeline_desc)
   branchSources {
     branchSource {
