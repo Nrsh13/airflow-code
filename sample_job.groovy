@@ -1,5 +1,5 @@
 pipelineJob('ecs-agent-sample') {
-  displayName('ECS Agent Sample Pipeline')
+  displayName('ECS Agent Sample')
   description('A sample Jenkins job with ECS Agent')
 
   // Declarative Pipeline section
