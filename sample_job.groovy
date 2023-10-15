@@ -1,27 +1,41 @@
-pipelineJob('ecs-agent-test') {
-    description('Pipeline for ECS Agent Testing')
+pipelineJob('ecs-agent-sample') {
+    displayName('ECS Agent Sample Pipeline')
+    description('A sample Jenkins job with ECS Agent')
+
+    // Declarative Pipeline section
     definition {
         cps {
             script('''
-                node {
-                    stage('Checkout') {
-                        // Check out the code from the source code management system if needed
-                    }
-                    stage('Build and Test') {
-                        // Add your Groovy script here
-                        echo 'Hello, this is a sample Groovy script!'
-                        sh 'echo "Build and test steps go here"'
-                    }
-                    stage('Deploy') {
-                        // Add deployment steps here
-                        sh 'echo "Deployment steps go here"'
+                pipeline {
+                    agent {
+					  label: 'agent'
+					}
+                    stages {
+                        stage('Checkout') {
+                            steps {
+                                checkout scm
+                            }
+                        }
+                        stage('Build and Test') {
+                            steps {
+                                script {
+                                    echo 'Hello, this is a sample Declarative Pipeline stage.'
+                                }
+                            }
+                        }
+                        stage('Deploy') {
+                            steps {
+                                script {
+                                    sh 'echo "Sample deployment steps go here"'
+                                }
+                            }
+                        }
                     }
                 }
             ''')
             sandbox(true)
         }
     }
-    triggers {
-        scm('H/5 * * * *') // Configure the polling schedule as needed
-    }
 }
+
+
