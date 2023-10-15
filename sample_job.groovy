@@ -13,7 +13,7 @@ pipelineJob('ecs-agent-sample') {
           stages {
             stage('Checkout') {
               steps {
-                checkout scm
+                echo "Checkout Branch"
               }
             }
             stage('Build and Test') {
